@@ -29,6 +29,9 @@ public class ProdDoaJDBCImpl implements ProdDao {
 
     }
 
+    public ProdType getOneProdType(Integer prodTypeId){
+        return null;
+    }
     public List<ProdType> findAllType(){
         return null;
     }

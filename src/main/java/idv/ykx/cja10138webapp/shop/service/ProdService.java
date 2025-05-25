@@ -29,7 +29,6 @@ public class ProdService {
         product.setProdBrand(prodBrand);
         product.setProdStatus(prodStatus);
         prodDao.update(product);
-
         return prodDao.findByPrimaryKey(prodId);
     }
 
@@ -61,6 +60,11 @@ public class ProdService {
     // Get All Product Type
     public List<ProdType> getAllTypes(){
         return prodDao.findAllType();
+    }
+
+    // get one Product Type
+    public ProdType getProdType(int prodTypeId){
+        return prodDao.getOneProdType(prodTypeId);
     }
 
     // Delete

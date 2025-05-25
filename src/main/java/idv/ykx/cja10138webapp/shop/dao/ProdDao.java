@@ -14,5 +14,5 @@ public interface ProdDao {
 
     // Product Type
     public List<ProdType> findAllType();
-
+    public ProdType getOneProdType(Integer prodTypeId);
 }

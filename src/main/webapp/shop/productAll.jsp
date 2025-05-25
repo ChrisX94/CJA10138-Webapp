@@ -8,11 +8,11 @@
     ProdService PS = new ProdService();
     List<Product> list = PS.getAllProd();
     pageContext.setAttribute("list",list);
+    List<ProdType> typeList = PS.getAllTypes();
+    pageContext.setAttribute("typeList", typeList);
 %>
 
-<c:if test="${not empty success}">
-    <div style="color:green">${success}</div>
-</c:if>
+
 
 <html>
 <head>
@@ -55,6 +55,9 @@
     </style>
 </head>
 <body>
+<c:if test="${not empty success}">
+    <div style="color:green">${success}</div>
+</c:if>
 
 <table id="table-1">
     <tr><td>
@@ -88,7 +91,13 @@
     <tr>
         <td>${prod.prodId}</td>
         <td>${prod.prodName}</td>
-        <td>${prod.prodTypeId}</td>
+        <td>${prod.prodTypeId}:
+            <c:forEach var="type" items="${typeList}">
+                <c:if test="${prod.prodTypeId == type.prodTypeId}">
+                    ${type.prodTypeName}
+                </c:if>
+            </c:forEach>
+        </td>
         <td>${prod.prodContent}</td>
         <td>${prod.prodDesc}</td>
         <td>${prod.prodPrice}</td>

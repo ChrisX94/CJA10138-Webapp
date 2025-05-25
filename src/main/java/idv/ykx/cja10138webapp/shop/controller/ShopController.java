@@ -1,6 +1,7 @@
 package idv.ykx.cja10138webapp.shop.controller;
 
 import idv.ykx.cja10138webapp.shop.dao.daoimpl.ProdDoaJDBCImpl;
+import idv.ykx.cja10138webapp.shop.model.ProdType;
 import idv.ykx.cja10138webapp.shop.model.Product;
 import idv.ykx.cja10138webapp.shop.service.ProdService;
 import jakarta.servlet.RequestDispatcher;
@@ -76,6 +77,7 @@ public class ShopController extends HttpServlet {
             }
             /* Operating with BD */
             Product product = prodService.getOneProduct(prodId);
+            ProdType prodType = prodService.getProdType(prodId);
             if (product == null) { // if the product is not existed then
                 errors.put("prodId", "No such product ID"); // add errorMsg to errors
             }
@@ -86,6 +88,7 @@ public class ShopController extends HttpServlet {
             }
             /* Query is done, forward the result */
             req.setAttribute("product", product); // set the product obj in request
+            req.setAttribute("prodType", prodType);
             String url = "/shop/listOneProd.jsp";
             RequestDispatcher successMsg = req.getRequestDispatcher(url);
             successMsg.forward(req, res);
@@ -94,7 +97,7 @@ public class ShopController extends HttpServlet {
     /* **************************  Insert  ***************************  */
     void createNewProduct (HttpServletRequest req, HttpServletResponse res)throws ServletException, IOException{
             Map<String, String> errors = new LinkedHashMap<String, String>();
-            req.setAttribute("errors", errors);
+            req.setAttribute("errorMsgs", errors);
             /*get parameter from frontend, and check the format of parameters */
             String prodName = req.getParameter("prodName");
             String prodNameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,30}$"; // regx Chinese, number and _ , length is between 1-30
@@ -117,15 +120,15 @@ public class ShopController extends HttpServlet {
             Integer prodPrice = null;
             try {
                 prodPrice = Integer.valueOf(req.getParameter("prodPrice").trim());
-                if (prodPrice < 0) {
+                if (prodPrice <= 0) {
                     errors.put("prodPrice", "商品價格不能小於0");
                 }
             } catch (NumberFormatException e) {
-                errors.put("prodPrice", "商品價格不能空白");
+                errors.put("prodPrice", "商品價格不能空白，必須是整數");
             }
             String prodBrand = req.getParameter("prodBrand");
             if (prodBrand == null || prodBrand.isEmpty()) {
-                errors.put("prodDesc", "商品內容不能空白");
+                errors.put("prodBrand", "商品內容不能空白");
             }
             // prodStatus is using list no need for check
             Boolean prodStatus = Boolean.parseBoolean(req.getParameter("prodStatus"));
@@ -198,15 +201,15 @@ public class ShopController extends HttpServlet {
             Integer prodPrice = null;
             try {
                 prodPrice = Integer.valueOf(req.getParameter("prodPrice").trim());
-                if (prodPrice < 0) {
+                if (prodPrice <= 0) {
                     errors.put("prodPrice", "商品價格不能小於0");
                 }
             } catch (NumberFormatException e) {
-                errors.put("prodPrice", "商品價格不能空白");
+                errors.put("prodPrice", "商品價格不能空白，必須是整數");
             }
             String prodBrand = req.getParameter("prodBrand");
             if (prodBrand == null || prodBrand.isEmpty()) {
-                errors.put("prodDesc", "商品內容不能空白");
+                errors.put("prodBrand", "商品內容不能空白");
             }
             // prodStatus is using list no need for check
             Boolean prodStatus = Boolean.parseBoolean(req.getParameter("prodStatus"));
@@ -218,8 +221,10 @@ public class ShopController extends HttpServlet {
             }
             /* Operating with BD */
             Product prod = prodService.updateProduct(prodId, prodName, prodTypeId, prodContent, prodDesc, prodPrice, prodBrand, prodStatus);
+            ProdType prodType = prodService.getProdType(prodId);
             /* Query is done, forward the result */
             req.setAttribute("product", prod);
+             req.setAttribute("prodType", prodType);
             String url = "/shop/listOneProd.jsp";
             RequestDispatcher successMsg = req.getRequestDispatcher(url);
             successMsg.forward(req, res);

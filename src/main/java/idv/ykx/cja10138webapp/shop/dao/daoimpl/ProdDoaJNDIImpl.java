@@ -24,6 +24,7 @@ public class ProdDoaJNDIImpl implements ProdDao {
             "PROD_PRICE=?, PROD_BRAND=?,PROD_UPD_TIME= CURRENT_TIMESTAMP, PROD_STATUS=?" +
             " WHERE PROD_ID = ? ;";
     private static final String DELETE = "DELETE FROM PROD WHERE PROD_ID = ?;";
+    private static final String GET_TYPE = "SELECT * FROM PROD_TYPE WHERE PROD_TYPE_ID = ?;";
 
     // Product Type
     private static final String GET_ALL_TYPE = "SELECT * FROM prod_type";
@@ -173,6 +174,28 @@ public class ProdDoaJNDIImpl implements ProdDao {
         return products;
     }
 
+    public ProdType getOneProdType(Integer prodTypeId){
+        ProdType prodType = new ProdType();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try{
+            conn = ds.getConnection();
+            pstmt = conn.prepareStatement(GET_TYPE);
+            pstmt.setInt(1, prodTypeId);
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                prodType.setProdTypeId(rs.getInt("PROD_TYPE_ID"));
+                prodType.setProdTypeName(rs.getString("PROD_TYPE_NAME"));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            closeResources(conn, pstmt, rs);
+        }
+        return prodType;
+    }
+
     public List<ProdType> findAllType(){
         List<ProdType> prodTypes = new ArrayList<ProdType>();
         ProdType prodTpye = null;
@@ -201,6 +224,7 @@ public class ProdDoaJNDIImpl implements ProdDao {
 
     }
 
+
     public void delete(Integer productId){
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -221,6 +245,8 @@ public class ProdDoaJNDIImpl implements ProdDao {
         }
 
     }
+
+
 
 
     private void closeResources(Connection con, PreparedStatement pstmt, ResultSet rs) {

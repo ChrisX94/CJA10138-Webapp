@@ -1,10 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="idv.ykx.cja10138webapp.shop.model.Product"%>
+<%@ page import="idv.ykx.cja10138webapp.shop.model.ProdType" %>
 
 
 <%
   Product prod = (Product) request.getAttribute("product");
-  request.setAttribute("prod", prod); 
+  request.setAttribute("prod", prod);
+  ProdType prodType = (ProdType) request.getAttribute("prodType");
+  request.setAttribute("prodType",prodType);
 %>
 
 <html>
@@ -77,7 +80,7 @@
   <tr>
     <td>${prod.prodId}</td>
     <td>${prod.prodName}</td>
-    <td>${prod.prodType.prodTypeName}</td>
+    <td>${prodType.prodTypeName}</td>
     <td>${prod.prodContent}</td>
     <td>${prod.prodDesc}</td>
     <td>${prod.prodPrice}</td>

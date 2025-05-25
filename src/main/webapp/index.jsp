@@ -13,5 +13,7 @@
 <a href="${pageContext.request.contextPath}/shop/product_page.jsp">Product</a>
 <br>
 <a href="${pageContext.request.contextPath}/shop/addProd.jsp">Add Product</a>
+<br>
+<a href='${pageContext.request.contextPath}/shop/productAll.jsp'> List All Products. </a>
 </body>
 </html>

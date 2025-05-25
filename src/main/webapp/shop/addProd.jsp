@@ -49,7 +49,7 @@
 
         <tr>
             <td>商品名稱:</td>
-            <td><input type="TEXT" name="prodName" value="商品87" size="45"/></td> <td>${errorMsgs.prodName}</td>
+            <td><input type="TEXT" name="prodName" value="商品名稱" size="45"/></td> <td>${errorMsgs.prodName}</td>
         </tr>
         <tr>
             <td>商品類型:</td>
@@ -64,27 +64,27 @@
         </tr>
         <tr>
             <td>商品內容:</td>
-            <td><input type="TEXT" name="prodContent"   value="9487"  size="45"/></td> <td>${errorMsgs.prodContent}</td>
+            <td><input type="TEXT" name="prodContent"   value="商品內容"  size="45"/></td> <td>${errorMsgs.prodContent}</td>
         </tr>
 
         <tr>
             <td>商品敘述:</td>
-            <td><input type="TEXT" name="prodDesc"   value="9487"  size="45"/></td> <td>${errorMsgs.prodDesc}</td>
+            <td><input type="TEXT" name="prodDesc"   value="商品敘述"  size="45"/></td> <td>${errorMsgs.prodDesc}</td>
         </tr>
 
         <tr>
             <td>商品價格:</td>
-            <td><input type="TEXT" name="prodPrice"   value="87"   size="45"/></td> <td>${errorMsgs.prodPrice}</td>
+            <td><input type="TEXT" name="prodPrice"   value="商品價格"   size="45"/></td> <td>${errorMsgs.prodPrice}</td>
         </tr>
         <tr>
             <td>商品品牌:</td>
-            <td><input type="TEXT" name="prodBrand"   value="eighty-seven"   size="45"/></td> <td>${errorMsgs.prodBrand}</td>
+            <td><input type="TEXT" name="prodBrand"   value="商品品牌"   size="45"/></td> <td>${errorMsgs.prodBrand}</td>
         </tr>
 
         <tr>
             <td>商品狀態:</td>
             <td>
-            <select size="1" name="prodTypeId">
+            <select size="1" name="prodStatus">
                 <option value="true">上架</option>
                 <option value="false">下架</option>
             </select>

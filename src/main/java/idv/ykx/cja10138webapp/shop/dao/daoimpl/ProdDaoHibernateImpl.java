@@ -9,6 +9,9 @@ import org.hibernate.Session;
 import java.util.List;
 
 public class ProdDaoHibernateImpl implements ProdDao {
+    public ProdType getOneProdType(Integer prodTypeId){
+        return null;
+    }
 
     public void delete(Integer productId){
 

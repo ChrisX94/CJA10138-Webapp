@@ -27,7 +27,12 @@ public class HelloServlet extends HttpServlet {
 
 ///////////////////////////JDBC Test//////////////////////////////////////////
 //        ProdDoaJDBCImpl a = new ProdDoaJDBCImpl();
-//        ProdDoaJNDIImpl a = new ProdDoaJNDIImpl();
+        ProdDoaJNDIImpl a = new ProdDoaJNDIImpl();
+        System.out.println(a.getOneProdType(1));
+
+
+
+
 //        Product pd = new Product();
 //        pd.setProdName("name");
 //        pd.setProdTypeId(1);
