@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/testshakemate?serverTimezone=Asia/Taipei</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root49</property>
+
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        
+        <!-- 下面的是手動輸入 -->
+    	<property name="hibernate.show_sql">true</property>
+    	
+    	<!-- 下面讓hibernate.show_sql 有排版的輸出 -->
+    	<property name="hibernate.format_sql">true</property>
+    	
+    	<!-- property name="hibernate.hbm2ddl.auto 可以去驗證是否有對應的欄位是否正確 -->
+    	<property name="hibernate.hbm2ddl.auto">validate</property>
+    	
+    	<property name="hibernate.current_session_context_class">thread</property>
+    	
+    	<!-- Mapping 標籤可以加速 Hibernate 的初始載入速度 -->
+    	<mapping class="idv.ykx.cja10138webapp.shop.model.Product" />
+        <mapping class="idv.ykx.cja10138webapp.shop.model.ProdType" />
+        <mapping class="idv.ykx.cja10138webapp.shop.model.ProdPic" />
+    	
+    	
+    </session-factory>
+</hibernate-configuration>
