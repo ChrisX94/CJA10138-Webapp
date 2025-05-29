@@ -33,7 +33,7 @@ public class ProdService {
     }
 
     // Create new product
-    public Product addProduct(String prodName,Integer prodTypeId , String prodContent,
+    public void addProduct(String prodName,Integer prodTypeId , String prodContent,
                               String prodDesc ,Integer prodPrice, String prodBrand, Boolean prodStatus) {
         Product prod = new Product();
         prod.setProdName(prodName);
@@ -44,7 +44,6 @@ public class ProdService {
         prod.setProdBrand(prodBrand);
         prod.setProdStatus(prodStatus);
         prodDao.addProduct(prod);
-        return prod;
     }
 
     // get one by PK

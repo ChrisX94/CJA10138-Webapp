@@ -23,7 +23,7 @@
 <table id="table-1">
     <tr><td>
         <h3>商品新增 - addProd.jsp</h3></td><td>
-        <h4><a href="product_page.jsp"><img src="images/tomcat.png" width="100" height="100" border="0">回首頁</a></h4>
+        <h4><a href="product_page.jsp">回首頁</a></h4>
     </td></tr>
 </table>
 

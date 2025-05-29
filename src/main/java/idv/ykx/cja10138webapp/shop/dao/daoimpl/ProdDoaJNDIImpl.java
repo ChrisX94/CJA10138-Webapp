@@ -3,9 +3,8 @@ package idv.ykx.cja10138webapp.shop.dao.daoimpl;
 import idv.ykx.cja10138webapp.shop.dao.ProdDao;
 import idv.ykx.cja10138webapp.shop.model.ProdType;
 import idv.ykx.cja10138webapp.shop.model.Product;
+import idv.ykx.cja10138webapp.util.ConnectionPool;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import java.sql.*;
@@ -29,16 +28,7 @@ public class ProdDoaJNDIImpl implements ProdDao {
     // Product Type
     private static final String GET_ALL_TYPE = "SELECT * FROM prod_type";
 
-    private static DataSource ds = null;
-    static {
-        try {
-            Context ctx = new InitialContext();
-            ds = (DataSource) ctx.lookup("java:comp/env/jdbc/testshakemate");
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
-    }
-
+    private static DataSource ds= new ConnectionPool().getConnPool();
 
     @Override
     public void update(Product product){
@@ -249,7 +239,7 @@ public class ProdDoaJNDIImpl implements ProdDao {
 
 
 
-    private void closeResources(Connection con, PreparedStatement pstmt, ResultSet rs) {
+    private void closeResources(Connection con, PreparedStatement stmt, ResultSet rs) {
         if (rs != null) {
             try {
                 rs.close();
@@ -257,9 +247,9 @@ public class ProdDoaJNDIImpl implements ProdDao {
                 se.printStackTrace(System.err);
             }
         }
-        if (pstmt != null) {
+        if (stmt != null) {
             try {
-                pstmt.close();
+                stmt.close();
             } catch (SQLException se) {
                 se.printStackTrace(System.err);
             }
@@ -273,10 +263,10 @@ public class ProdDoaJNDIImpl implements ProdDao {
         }
     }
 
-    private void closeResources(Connection con, PreparedStatement pstmt) {
-        if (pstmt != null) {
+    private void closeResources(Connection con, PreparedStatement stmt) {
+        if (stmt != null) {
             try {
-                pstmt.close();
+                stmt.close();
             } catch (SQLException se) {
                 se.printStackTrace(System.err);
             }

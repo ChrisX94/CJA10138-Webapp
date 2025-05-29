@@ -77,7 +77,7 @@ public class ShopController extends HttpServlet {
             }
             /* Operating with BD */
             Product product = prodService.getOneProduct(prodId);
-            ProdType prodType = prodService.getProdType(prodId);
+            ProdType prodType = prodService.getProdType(product.getProdTypeId());
             if (product == null) { // if the product is not existed then
                 errors.put("prodId", "No such product ID"); // add errorMsg to errors
             }
@@ -221,7 +221,7 @@ public class ShopController extends HttpServlet {
             }
             /* Operating with BD */
             Product prod = prodService.updateProduct(prodId, prodName, prodTypeId, prodContent, prodDesc, prodPrice, prodBrand, prodStatus);
-            ProdType prodType = prodService.getProdType(prodId);
+            ProdType prodType = prodService.getProdType(prod.getProdTypeId());
             /* Query is done, forward the result */
             req.setAttribute("product", prod);
              req.setAttribute("prodType", prodType);

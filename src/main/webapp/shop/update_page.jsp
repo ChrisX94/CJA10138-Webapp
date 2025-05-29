@@ -20,7 +20,7 @@
 <table id="table-1">
     <tr><td>
         <h3>商品資料修改 - update_page.jsp</h3>
-        <h4><a href="product_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+        <h4><a href="product_page.jsp">回首頁</a></h4>
     </td></tr>
 </table>
 
@@ -51,7 +51,7 @@
                     <td>商品分類編號:<font color=red><b>*</b></font></td>
                     <td><select size="1" name="prodTypeId">
                         <c:forEach var="prodType" items="${prodService.allTypes}">
-                        <option value="${param.prodTypeId}" ${(param.prodTypeId==prodType.prodTypeId)? 'selected':'' } >${prodType.prodTypeName}
+                        <option value="${prodType.prodTypeId}" ${(param.prodTypeId==prodType.prodTypeId)? 'selected':'' } >${prodType.prodTypeName}
                             </c:forEach>
                     </select></td>
                 </tr>

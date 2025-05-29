@@ -16,7 +16,7 @@ public class ProdPic implements Serializable {
     @Column(name="PROD_PIC_ID")
     private Integer prodPicId;
     @Column(name="PROD_ID")
-    private String prodId;
+    private Integer prodId;
     // 因為 byte[] 會被 hibernate 視為 tinyblob 型別，所以跟DB裡的 longblob 不符，所以用 columnDefinition 定義
     @Column(name = "PROD_PIC", columnDefinition = "longblob")
     private byte[] prodPic;
@@ -25,7 +25,7 @@ public class ProdPic implements Serializable {
         super();
     }
 
-    public ProdPic(Integer prodPicId, String prodId) {
+    public ProdPic(Integer prodPicId, Integer prodId) {
         this.prodPicId = prodPicId;
         this.prodId = prodId;
     }
@@ -38,11 +38,11 @@ public class ProdPic implements Serializable {
         this.prodPicId = prodPicId;
     }
 
-    public String getProdId() {
+    public Integer getProdId() {
         return prodId;
     }
 
-    public void setProdId(String prodId) {
+    public void setProdId(Integer prodId) {
         this.prodId = prodId;
     }
 
