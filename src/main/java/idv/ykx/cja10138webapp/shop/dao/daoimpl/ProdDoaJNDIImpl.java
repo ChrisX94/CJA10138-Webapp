@@ -59,13 +59,15 @@ public class ProdDoaJNDIImpl implements ProdDao {
     }
 
     @Override
-    public void addProduct(Product product){
+    public Product addProduct(Product product){
+        Product newProduct = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
+
         try{
             conn = ds.getConnection();
-            pstmt = conn.prepareStatement(CREATE);
+            pstmt = conn.prepareStatement(CREATE,Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, product.getProdName());
             pstmt.setInt(2, product.getProdTypeId());
             pstmt.setString(3, product.getProdContent());
@@ -74,13 +76,21 @@ public class ProdDoaJNDIImpl implements ProdDao {
             pstmt.setString(6, product.getProdBrand());
             pstmt.setBoolean(7, product.getProdStatus());
             pstmt.executeUpdate();
+            rs = pstmt.getGeneratedKeys();
+            Integer newId = null;
+            if (rs.next()) {
+                newId = rs.getInt(1);
+            }
 
-            System.out.println("Updated Successfully");
+            System.out.println("Updated Successfully, new product Id is " + newId);
+            newProduct = findByPrimaryKey(newId);
+
         }catch(SQLException e){
             e.printStackTrace();
         }finally{
             closeResources(conn, pstmt, rs);
         }
+        return newProduct;
     }
 
     @Override

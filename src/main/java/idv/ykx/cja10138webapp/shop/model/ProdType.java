@@ -1,13 +1,13 @@
 package idv.ykx.cja10138webapp.shop.model;
 
-import jakarta.persistence.Entity;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name= "PROD_TYPE")
+@Table(name="PROD_TYPE")
 public class ProdType implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

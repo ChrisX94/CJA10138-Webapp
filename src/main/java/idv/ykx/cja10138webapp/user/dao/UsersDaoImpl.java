@@ -49,7 +49,7 @@ public class UsersDaoImpl implements UsersDao {
                 user.setUsername(rs.getString("USERNAME"));
                 user.setEmail(rs.getString("EMAIL"));
                 user.setPwd(rs.getString("PWD"));
-                user.setGender(rs.getInt("GENDER"));
+                user.setGender(rs.getByte("GENDER"));
                 user.setBirthday(rs.getDate("birthday"));
                 user.setLocation(rs.getString("LOCATION"));
                 user.setIntro(rs.getString("INTRO"));
@@ -61,7 +61,7 @@ public class UsersDaoImpl implements UsersDao {
                 user.setImg5(rs.getString("IMG5"));
                 user.setInterests(rs.getString("INTERESTS"));
                 user.setUpdatedTime(rs.getTimestamp("UPDATED_TIME"));
-                user.setUserStatus(rs.getInt("USER_STATUS"));
+                user.setUserStatus(rs.getByte("USER_STATUS"));
                 user.setPostStatus(rs.getBoolean("POST_STATUS"));
                 user.setAtAcStatus(rs.getBoolean("AT_AC_STATUS"));
                 user.setSellStatus(rs.getBoolean("SELL_STATUS"));
@@ -174,7 +174,7 @@ public class UsersDaoImpl implements UsersDao {
                 user.setUsername(rs.getString("USERNAME"));
                 user.setEmail(rs.getString("EMAIL"));
                 user.setPwd(rs.getString("PWD"));
-                user.setGender(rs.getInt("GENDER"));
+                user.setGender(rs.getByte("GENDER"));
                 user.setBirthday(rs.getDate("birthday"));
                 user.setLocation(rs.getString("LOCATION"));
                 user.setIntro(rs.getString("INTRO"));
@@ -186,7 +186,7 @@ public class UsersDaoImpl implements UsersDao {
                 user.setImg5(rs.getString("IMG5"));
                 user.setInterests(rs.getString("INTERESTS"));
                 user.setUpdatedTime(rs.getTimestamp("UPDATED_TIME"));
-                user.setUserStatus(rs.getInt("USER_STATUS"));
+                user.setUserStatus(rs.getByte("USER_STATUS"));
                 user.setPostStatus(rs.getBoolean("POST_STATUS"));
                 user.setAtAcStatus(rs.getBoolean("AT_AC_STATUS"));
                 user.setSellStatus(rs.getBoolean("SELL_STATUS"));
@@ -218,7 +218,7 @@ public class UsersDaoImpl implements UsersDao {
                 user.setUsername(rs.getString("USERNAME"));
                 user.setEmail(rs.getString("EMAIL"));
                 user.setPwd(rs.getString("PWD"));
-                user.setGender(rs.getInt("GENDER"));
+                user.setGender(rs.getByte("GENDER"));
                 user.setBirthday(rs.getDate("birthday"));
                 user.setLocation(rs.getString("LOCATION"));
                 user.setIntro(rs.getString("INTRO"));
@@ -230,7 +230,7 @@ public class UsersDaoImpl implements UsersDao {
                 user.setImg5(rs.getString("IMG5"));
                 user.setInterests(rs.getString("INTERESTS"));
                 user.setUpdatedTime(rs.getTimestamp("UPDATED_TIME"));
-                user.setUserStatus(rs.getInt("USER_STATUS"));
+                user.setUserStatus(rs.getByte("USER_STATUS"));
                 user.setPostStatus(rs.getBoolean("POST_STATUS"));
                 user.setAtAcStatus(rs.getBoolean("AT_AC_STATUS"));
                 user.setSellStatus(rs.getBoolean("SELL_STATUS"));

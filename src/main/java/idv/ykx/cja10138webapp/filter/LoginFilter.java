@@ -21,16 +21,21 @@ public class LoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException{
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res = (HttpServletResponse) response;
+        HttpServletRequest req = (HttpServletRequest) request; // ServletRequest 轉成HttpServletRequest
+        HttpServletResponse res = (HttpServletResponse) response; // ServletResponse HttpServletResponse
 
-        HttpSession session = req.getSession();
-        Object account = session.getAttribute("account");
-        if(account == null){
-            session.setAttribute("location", req.getRequestURI());
-            res.sendRedirect(req.getContextPath()+ "/login/login.jsp");
+        HttpSession session = req.getSession(); // 取得Session 物件
+        Object account = session.getAttribute("account"); // 取得account物件
+        if(account == null){ // 如果account沒有值
+            session.setAttribute("location", req.getRequestURI()); // 取的前頁的資訊, req.getRequestURI() 是 Servlet 中用來取得 HTTP 請求的 URI 路徑
+            res.sendRedirect(req.getContextPath()+ "/login/login.jsp"); // 要重導的網址
             return;
         }else{
+            PrintWriter out = res.getWriter();
+            out.println("Hi "+ account);
+            out.println("<br><FORM METHOD='post' action='" +
+                    req.getContextPath()+  "/login/loginHandler'" +
+                    " style='margin-bottom: 0px;'><input type=submit name='login' value='logout'></FORM>");
             chain.doFilter(request, response);
         }
 

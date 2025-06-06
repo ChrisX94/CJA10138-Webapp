@@ -44,7 +44,7 @@
 </c:if>
 
 
-<FORM METHOD="post" ACTION="<%= request.getContextPath() %>/shop/shop.do" name="form1">
+<FORM METHOD="post" ACTION="<%= request.getContextPath() %>/shop/shop.do" name="form1" enctype="multipart/form-data">
     <table>
 
         <tr>
@@ -91,13 +91,66 @@
             </td>
         </tr>
 
-
-
     </table>
+    <div>
+        <label for="prodPic">商品圖片 </label>
+        <input id="prodPic" name="prodPic" type="file" onclick="priviewImg()" onchange="hideContent('upFiles.errors')" />
+        <span id="upFiles.errors" class="error">${errorMsgs.prodPic}</span>
+        <div id="blob_holder"></div>
+    </div>
+
     <br>
     <input type="hidden" name="action" value="insert">
-    <input type="submit" value="送出新增"></FORM>
+    <input id="submit" type="submit" value="送出新增"></FORM>
 
 
 </body>
+<script>
+    function hideContent(d) {
+        document.getElementById(d).style.display = "none";
+    }
+
+    var filereader_support = typeof FileReader != 'undefined';
+    if (!filereader_support) {
+        alert("No FileReader support");
+    }
+    acceptedTypes = {
+        'image/png' : true,
+        'image/jpeg' : true,
+        'image/gif' : true
+    };
+    function priviewImg() {
+        var upfile1 = document.getElementById("prodPic");
+        upfile1.addEventListener("change", function(event) {
+            var files = event.target.files || event.dataTransfer.files;
+            for (var i = 0; i < files.length; i++) {
+                previewfile(files[i])
+            }
+        }, false);
+    }
+    function previewfile(file) {
+        if (filereader_support === true && acceptedTypes[file.type] === true) {
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                var image = new Image();
+                image.src = event.target.result;
+                image.width = 100;
+                image.height = 75;
+                image.border = 2;
+                if (blob_holder.hasChildNodes()) {
+                    blob_holder.removeChild(blob_holder.childNodes[0]);
+                }
+                blob_holder.appendChild(image);
+            };
+            reader.readAsDataURL(file);
+            document.getElementById('submit').disabled = false;
+        } else {
+            blob_holder.innerHTML = "<div  style='text-align: left;'>" + "● filename: " + file.name
+                + "<br>" + "● ContentTyp: " + file.type
+                + "<br>" + "● size: " + file.size + "bytes"
+                + "<br>" + "● 上傳ContentType限制: <b> <font color=red>image/png、image/jpeg、image/gif </font></b></div>";
+            document.getElementById('submit').disabled = true;
+        }
+    }
+</script>
 </html>

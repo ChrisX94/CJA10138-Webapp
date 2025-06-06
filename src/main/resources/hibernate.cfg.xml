@@ -10,22 +10,40 @@
         <property name="hibernate.connection.password">root49</property>
 
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        
+
         <!-- 下面的是手動輸入 -->
     	<property name="hibernate.show_sql">true</property>
     	
     	<!-- 下面讓hibernate.show_sql 有排版的輸出 -->
     	<property name="hibernate.format_sql">true</property>
-    	
-    	<!-- property name="hibernate.hbm2ddl.auto 可以去驗證是否有對應的欄位是否正確 -->
+
+        <!--   Hikari     -->
+        <property name="hibernate.connection.provider_class">org.hibernate.hikaricp.internal.HikariCPConnectionProvider</property>
+        <property name="hibernate.hikari.minimumIdle">5</property>
+        <property name="hibernate.hikari.maximumPoolSize">10</property>
+        <property name="hibernate.hikari.idleTimeout">300000</property>
+        <property name="hibernate.hikari.connectionTimeout">30000</property>
+        <property name="hibernate.hikari.maxLifetime">1800000</property>
+        <property name="hibernate.hikari.poolName">MyHikariCP</property>
+
+        <!-- property name="hibernate.hbm2ddl.auto 可以去驗證是否有對應的欄位是否正確 -->
     	<property name="hibernate.hbm2ddl.auto">validate</property>
     	
     	<property name="hibernate.current_session_context_class">thread</property>
     	
     	<!-- Mapping 標籤可以加速 Hibernate 的初始載入速度 -->
+        <!-- User-->
+        <mapping class="idv.ykx.cja10138webapp.user.model.Users" />
+        <!-- Shop -->
     	<mapping class="idv.ykx.cja10138webapp.shop.model.Product" />
         <mapping class="idv.ykx.cja10138webapp.shop.model.ProdType" />
         <mapping class="idv.ykx.cja10138webapp.shop.model.ProdPic" />
+        <!-- SH-Shop-->
+        <mapping class="idv.ykx.cja10138webapp.shshop.model.ShProd" />
+        <mapping class="idv.ykx.cja10138webapp.shshop.model.ShProdType" />
+        <mapping class="idv.ykx.cja10138webapp.shshop.model.ShProdPic" />
+        <mapping class="idv.ykx.cja10138webapp.shshop.model.ShProdRp" />
+
     	
     	
     </session-factory>

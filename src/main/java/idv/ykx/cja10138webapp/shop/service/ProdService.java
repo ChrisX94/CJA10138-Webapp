@@ -1,10 +1,12 @@
 package idv.ykx.cja10138webapp.shop.service;
 
 import idv.ykx.cja10138webapp.shop.dao.ProdDao;
+import idv.ykx.cja10138webapp.shop.dao.daoimpl.ProdDaoHibernateImpl;
 import idv.ykx.cja10138webapp.shop.dao.daoimpl.ProdDoaJNDIImpl;
 import idv.ykx.cja10138webapp.shop.model.ProdType;
 import idv.ykx.cja10138webapp.shop.model.Product;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class ProdService {
@@ -12,8 +14,8 @@ public class ProdService {
 
     // Constructor, new ProdDoaJDBCImpl instance once new ProdService instance
     public ProdService() {
-//        prodDao = new ProdDoaJDBCImpl();
-        prodDao = new ProdDoaJNDIImpl();
+        prodDao = new ProdDaoHibernateImpl();
+//        prodDao = new ProdDoaJNDIImpl();
     }
 
     // Update
@@ -29,21 +31,30 @@ public class ProdService {
         product.setProdBrand(prodBrand);
         product.setProdStatus(prodStatus);
         prodDao.update(product);
+        System.out.println(prodDao.findByPrimaryKey(prodId));
+
         return prodDao.findByPrimaryKey(prodId);
     }
 
     // Create new product
-    public void addProduct(String prodName,Integer prodTypeId , String prodContent,
+    public Product addProduct(String prodName,Integer prodTypeId , String prodContent,
                               String prodDesc ,Integer prodPrice, String prodBrand, Boolean prodStatus) {
-        Product prod = new Product();
-        prod.setProdName(prodName);
-        prod.setProdTypeId(prodTypeId);
-        prod.setProdContent(prodContent);
-        prod.setProdDesc(prodDesc);
-        prod.setProdPrice(prodPrice);
-        prod.setProdBrand(prodBrand);
-        prod.setProdStatus(prodStatus);
-        prodDao.addProduct(prod);
+
+        Product prod = new Product(prodName, prodTypeId, prodContent, prodDesc, prodPrice, prodBrand, prodStatus);
+//        Product prod = new Product();
+//        prod.setProdName(prodName);
+//        prod.setProdTypeId(prodTypeId);
+//        prod.setProdContent(prodContent);
+//        prod.setProdDesc(prodDesc);
+//        prod.setProdPrice(prodPrice);
+//        prod.setProdBrand(prodBrand);
+//        Timestamp now = new Timestamp(System.currentTimeMillis());
+//        prod.setProdRateSum(0);
+//        prod.setProdRateCountSum(0);
+//        prod.setProdCreTime(now);
+//        prod.setProdUpdTime(now);
+//        prod.setProdStatus(prodStatus);
+        return prodDao.addProduct(prod);
     }
 
     // get one by PK

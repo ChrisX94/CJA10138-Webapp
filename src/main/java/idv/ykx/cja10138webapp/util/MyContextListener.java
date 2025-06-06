@@ -11,8 +11,18 @@ import java.util.Enumeration;
 
 import com.mysql.cj.jdbc.AbandonedConnectionCleanupThread;
 
+
+
 @WebListener
 public class MyContextListener implements ServletContextListener {
+
+
+
+    @Override
+    public void contextInitialized(ServletContextEvent sce) {
+        System.out.println("[MyContextListener] Application Started.");
+
+    }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
@@ -39,10 +49,5 @@ public class MyContextListener implements ServletContextListener {
             System.err.println("Error shutting down cleanup thread.");
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void contextInitialized(ServletContextEvent sce) {
-        System.out.println("[MyContextListener] Application Started.");
     }
 }

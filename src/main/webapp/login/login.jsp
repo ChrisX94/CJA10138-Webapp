@@ -47,7 +47,7 @@
             <tr>
                 <td colspan=2 align=center>
 
-                    <input type=submit value="  ok   ">
+                    <input type=submit name="login" value="login">
 
                 </td>
             </tr>

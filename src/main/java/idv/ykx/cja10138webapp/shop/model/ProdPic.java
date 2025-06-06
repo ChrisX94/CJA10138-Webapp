@@ -1,6 +1,6 @@
 package idv.ykx.cja10138webapp.shop.model;
 
-import jakarta.enterprise.inject.Model;
+
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -26,7 +26,7 @@ public class Users implements Serializable {
     private String pwd;
 
     @Column(name = "GENDER", nullable = false)
-    private Integer gender;
+    private byte gender;
 
     @Column(name = "BIRTHDAY")
     private Date birthday;
@@ -65,7 +65,7 @@ public class Users implements Serializable {
     private Timestamp updatedTime;
 
     @Column(name = "USER_STATUS", nullable = false)
-    private Integer userStatus;
+    private byte userStatus;
 
     @Column(name = "POST_STATUS", nullable = false)
     private Boolean postStatus;
@@ -79,7 +79,7 @@ public class Users implements Serializable {
     public Users() {
     }
 
-    public Users(Integer userId, String username, String email, String pwd, Integer gender, Date birthday, String location, String intro, Timestamp createdTime, String interests, String personality, Timestamp updatedTime, Integer userStatus, Boolean postStatus, Boolean atAcStatus, Boolean sellStatus) {
+    public Users(Integer userId, String username, String email, String pwd, byte gender, Date birthday, String location, String intro, Timestamp createdTime, String interests, String personality, Timestamp updatedTime, byte userStatus, Boolean postStatus, Boolean atAcStatus, Boolean sellStatus) {
         this.userId = userId;
         this.username = username;
         this.email = email;
@@ -130,11 +130,11 @@ public class Users implements Serializable {
         this.pwd = pwd;
     }
 
-    public Integer getGender() {
+    public byte getGender() {
         return gender;
     }
 
-    public void setGender(Integer gender) {
+    public void setGender(byte gender) {
         this.gender = gender;
     }
 
@@ -234,11 +234,11 @@ public class Users implements Serializable {
         this.updatedTime = updatedTime;
     }
 
-    public Integer getUserStatus() {
+    public byte getUserStatus() {
         return userStatus;
     }
 
-    public void setUserStatus(Integer userStatus) {
+    public void setUserStatus(byte userStatus) {
         this.userStatus = userStatus;
     }
 
@@ -290,14 +290,13 @@ public class Users implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Users users = (Users) o;
-        return Objects.equals(userId, users.userId) && Objects.equals(username, users.username) && Objects.equals(email, users.email) && Objects.equals(pwd, users.pwd) && Objects.equals(gender, users.gender) && Objects.equals(birthday, users.birthday) && Objects.equals(location, users.location) && Objects.equals(intro, users.intro) && Objects.equals(createdTime, users.createdTime) && Objects.equals(interests, users.interests) && Objects.equals(personality, users.personality) && Objects.equals(updatedTime, users.updatedTime) && Objects.equals(userStatus, users.userStatus) && Objects.equals(postStatus, users.postStatus) && Objects.equals(atAcStatus, users.atAcStatus) && Objects.equals(sellStatus, users.sellStatus);
+        if (!(o instanceof Users users)) return false;
+        return Objects.equals(userId, users.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, username, email, pwd, gender, birthday, location, intro, createdTime, interests, personality, updatedTime, userStatus, postStatus, atAcStatus, sellStatus);
+        return Objects.hashCode(userId);
     }
 }
 

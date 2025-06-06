@@ -1,5 +1,6 @@
 package idv.ykx.cja10138webapp.user.dao;
 
+import idv.ykx.cja10138webapp.shshop.model.ShProd;
 import idv.ykx.cja10138webapp.user.model.Users;
 import java.util.List;
 public interface UsersDao {

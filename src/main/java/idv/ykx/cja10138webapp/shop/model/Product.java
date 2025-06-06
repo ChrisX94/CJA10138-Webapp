@@ -1,6 +1,9 @@
 package idv.ykx.cja10138webapp.shop.model;
 
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -26,16 +29,18 @@ public class Product implements Serializable {
     private Integer prodPrice;
     @Column(name="PROD_BRAND")
     private String prodBrand;
-    @Column(name="PROD_SOLD")
+    @Column(name="PROD_SOLD", updatable = false, insertable = false)
     private Integer prodSold;
-    @Column(name="PROD_RATE_SUM")
+    @Column(name="PROD_RATE_SUM", updatable = false, insertable = false)
     private Integer prodRateSum;
-    @Column(name="PROD_RATE_COUNT_SUM")
+    @Column(name="PROD_RATE_COUNT_SUM", updatable = false, insertable = false)
     private Integer prodRateCountSum;
-    @Column(name="PROD_VIEWS")
+    @Column(name="PROD_VIEWS", updatable = false, insertable = false)
     private Integer prodViews;
-    @Column(name="PROD_CRE_TIME")
+    @CreationTimestamp
+    @Column(name="PROD_CRE_TIME", updatable = false)
     private Timestamp prodCreTime;
+    @UpdateTimestamp
     @Column(name="PROD_UPD_TIME")
     private Timestamp prodUpdTime;
     @Column(name="PROD_STATUS")

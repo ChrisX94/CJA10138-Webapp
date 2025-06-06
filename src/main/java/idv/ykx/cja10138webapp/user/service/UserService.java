@@ -42,7 +42,7 @@ public class UserService {
     }
 
 
-    public void signIn (String userName, String email, String password, Integer gender, Date birthday, String location,
+    public void signIn (String userName, String email, String password, byte gender, Date birthday, String location,
                         String intro, String interests, String personality) throws NoSuchAlgorithmException {
         Users user = new Users();
         user.setUsername(userName);
@@ -55,7 +55,7 @@ public class UserService {
         user.setInterests(interests);
         user.setPersonality(personality);
         // 因為是會員註冊創建資料(預設待審核)所以權限相關全部false
-        user.setUserStatus(0);
+        user.setUserStatus((byte) 0);
         user.setPostStatus(false);
         user.setAtAcStatus(false);
         user.setSellStatus(false);

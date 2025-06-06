@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface ProdImgDao {
 
+    public void uploadPic(ProdPic prodPic);
     public List<ProdPic> getProdPicByProdId(Integer prodId);
     public List<ProdPic> getAllPics();
     public ProdPic getProdPicById(Integer PROD_PIC_ID);

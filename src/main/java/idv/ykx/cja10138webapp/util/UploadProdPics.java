@@ -14,10 +14,6 @@ public class UploadProdPics {
 
     private static DataSource ds = null;
 
-
-
-
-
     public static void main(String[] args){
         String testFilePath = "src/main/resources/imgs";
         File file = new File(testFilePath);

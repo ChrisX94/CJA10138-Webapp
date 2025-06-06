@@ -62,8 +62,8 @@
 <table id="table-1">
     <tr><td>
         <h3>所有產品資料 - productAll.jsp</h3>
-                                                <%--  img not change yet      --%>
-        <h4><a href="product_page.jsp"><img src="images/back1.gif" width="100" height="32">回首頁</a></h4>
+
+        <h4><a href="product_page.jsp">回首頁</a></h4>
     </td></tr>
 </table>
 
